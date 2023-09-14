@@ -1,0 +1,38 @@
+﻿@* Los parametros se pasan por la url de la siguiente forma "<url>?primero=3&segundo=5" *@
+@page "/counter/"
+
+<PageTitle>Sumar</PageTitle>
+
+<h1>Sumador</h1>
+
+<p>Los parametros se deben pasar por la url: <b>primero</b> y <b>segundo</b></p>
+<p role="status">Primer valor: @firstValue</p>
+<p role="status">Segundo valor: @secondValue</p>
+<p role="status"><b>Resultado:</b> @resultado</p>
+
+<button class="btn btn-primary" @onclick="Sumar">Sumar</button>
+
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public string? primero {get; set;}
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public string? segundo {get; set;}
+
+    private int firstValue = 0;
+    private int secondValue = 0;
+
+    private int resultado = 0;
+
+    protected override void OnInitialized()
+    {
+        firstValue = primero != null ? int.Parse(primero) : 0;
+        secondValue = segundo != null ? int.Parse(segundo) : 0;
+    }
+
+    private void Sumar()
+    {
+        resultado = firstValue + secondValue;
+    }
+}
