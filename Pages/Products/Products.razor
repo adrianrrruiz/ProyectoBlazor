@@ -2,10 +2,13 @@
 @inject ILogger<Products> logger;
 @* Acá se injectan las dependencias *@
 @inject IProductService productService;
+@inject NavigationManager navigationManager
 
 <PageTitle>Products</PageTitle>
 
 <h1>Products</h1>
+<button class="btn btn-dark" @onclick="@(()=> navigationManager.NavigateTo("/addproduct"))">Add Product</button>
+
 @* Para validar que products no sea nulo o este vacio *@
 @if(products?.Count > 0){
     <div class="products-container">
