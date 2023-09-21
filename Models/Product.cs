@@ -1,3 +1,4 @@
+//Se crea el modelo igual a como está en la API
 namespace ProyectoBlazor;
 
 public class Product{

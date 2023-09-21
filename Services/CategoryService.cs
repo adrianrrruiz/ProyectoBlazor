@@ -1,7 +1,7 @@
 using System.Text.Json;
 
 namespace ProyectoBlazor;
-
+//Implementación de la inteface para crear relación entre la clase y la interfaz
 public class CategoryService : ICategoryService{
     private readonly HttpClient client;
     private readonly JsonSerializerOptions options;
@@ -11,7 +11,7 @@ public class CategoryService : ICategoryService{
         options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true};
     }
 
-    public async Task<List<Category>?> GetCategories(){
+    public async Task<List<Category>?> Get(){
         var response = await client.GetAsync("v1/categories");
         var content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode){
@@ -22,5 +22,5 @@ public class CategoryService : ICategoryService{
 }
 
 public interface ICategoryService{
-    Task<List<Category>?> GetCategories();
+    Task<List<Category>?> Get();
 }
